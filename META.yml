@@ -1,0 +1,19 @@
+---
+name: WWW-Freshmeat
+version: 0.01
+author:
+  - 'Cedric Bouvier <cbouvi@cpan.org>'
+abstract: automates searches on Freshmeat.net
+license: perl
+build_requires:
+  LWP::UserAgent: 0
+  Test::More: 0
+  XML::Simple: 0
+provides:
+  WWW::Freshmeat:
+    file: lib/WWW/Freshmeat.pm
+    version: 0.01
+  WWW::Freshmeat::Project:
+    file: lib/WWW/Freshmeat.pm
+    version: 0.01
+generated_by: Module::Build version 0.26

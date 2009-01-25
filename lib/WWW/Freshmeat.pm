@@ -1,7 +1,8 @@
 package WWW::Freshmeat;
 
-use warnings;
+use 5.006;
 use strict;
+use warnings;
 
 =head1 NAME
 
@@ -9,11 +10,11 @@ WWW::Freshmeat - automates searches on Freshmeat.net
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use XML::Simple qw();
 
@@ -21,7 +22,7 @@ use XML::Simple qw();
 
     use WWW::Freshmeat;
 
-    my $fm = new WWW::Freshmeat;
+    my $fm = WWW::Freshmeat->new;
 
     my $project = $fm->retrieve_project('project_id');
 
@@ -212,7 +213,8 @@ L<http://search.cpan.org/dist/WWW-Freshmeat>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2006 Cedric Bouvier, all rights reserved.
+Copyright 2006 Cedric Bouvier.
+Copyright 2009 Alexandr Ciornii.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

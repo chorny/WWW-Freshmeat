@@ -1,5 +1,12 @@
 Revision history for WWW-Freshmeat
 
+0.02    2009-01-
+        new maintainer: Alexandr Ciornii
+        "project.t" added, a live test
+        "boilerplate.t" removed
+        "all rights reserved" removed (by permission of Cedric Bouvier)
+        distribution modernized
+
 0.01    Wed May 31 13:29:17 CEST 2006
         First version, only retrieval of known project entry.
 

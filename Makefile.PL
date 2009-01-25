@@ -1,3 +1,4 @@
+use 5.006;
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
@@ -13,6 +14,10 @@ WriteMakefile(
         'LWP::UserAgent' => 0,
         'XML::Simple' => 0,
     },
+    ($ExtUtils::MakeMaker::VERSION ge '6.31'? 
+     ('LICENSE'		=> 'perl', ) : ()),
+    ($ExtUtils::MakeMaker::VERSION ge '6.48'? 
+     ('MIN_PERL_VERSION' => 5.006,) : ()),
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'WWW-Freshmeat-*' },
 );

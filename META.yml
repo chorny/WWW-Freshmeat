@@ -1,19 +1,23 @@
----
-name: WWW-Freshmeat
-version: 0.01
+--- #YAML:1.0
+name:               WWW-Freshmeat
+version:            0.02
+abstract:           automates searches on Freshmeat.net
 author:
-  - 'Cedric Bouvier <cbouvi@cpan.org>'
-abstract: automates searches on Freshmeat.net
-license: perl
-build_requires:
-  LWP::UserAgent: 0
-  Test::More: 0
-  XML::Simple: 0
-provides:
-  WWW::Freshmeat:
-    file: lib/WWW/Freshmeat.pm
-    version: 0.01
-  WWW::Freshmeat::Project:
-    file: lib/WWW/Freshmeat.pm
-    version: 0.01
-generated_by: Module::Build version 0.26
+    - Cedric Bouvier <cbouvi@cpan.org>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    LWP::UserAgent:  0
+    perl:            5.006
+    Test::More:      0
+    XML::Simple:     0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.48
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4

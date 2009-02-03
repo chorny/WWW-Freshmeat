@@ -13,6 +13,7 @@ WriteMakefile(
         'Test::More' => 0,
         'LWP::UserAgent' => 0,
         'XML::Simple' => 0,
+        'LWP::Online' => 1.06,
     },
     ($ExtUtils::MakeMaker::VERSION ge '6.31'? 
      ('LICENSE'		=> 'perl', ) : ()),

@@ -1,11 +1,20 @@
 Revision history for WWW-Freshmeat
 
-0.02    2009-01-
+0.03    2009-02-03
+        - retrieve_project for project that does not exist will return undef
+        - retrieve_project will die if it would not be able to fetch project record
+        - nonexistingproject.t to test this functionality
+        - method for returning id's of trove categories
+        - project_from_xml class method
+        - tests check for connection with LWP::Online
+        - Build.PL now lists modules in 'requires' section
+
+0.02    2009-01-25
         new maintainer: Alexandr Ciornii
-        "project.t" added, a live test
-        "boilerplate.t" removed
-        "all rights reserved" removed (by permission of Cedric Bouvier)
-        distribution modernized
+        - distribution modernized
+        - "project.t" added, a live test
+        - "boilerplate.t" removed
+        - "all rights reserved" removed (by permission of Cedric Bouvier)
 
 0.01    Wed May 31 13:29:17 CEST 2006
         First version, only retrieval of known project entry.

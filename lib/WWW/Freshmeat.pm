@@ -10,11 +10,11 @@ WWW::Freshmeat - automates searches on Freshmeat.net
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use XML::Simple qw();
 
@@ -64,6 +64,7 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
 sub name        { $_[0]->projectname_full(@_) || $_[0]->projectname_short(@_) } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
 sub version     { $_[0]{latest_release}{latest_release_version} }
+sub trove_id    { $_[0]{descriminators}{trove_id} }
 
 sub url {
 
@@ -96,7 +97,7 @@ that C<LWP::UserAgent> does, notably C<timeout>, C<useragent>, C<env_proxy>...
 
 Query the freshmeat.net site for the project I<STRING> (should be the Freshmeat
 ID of the requested project) and returns a C<WWW::Freshmeat::Project> object or
-dies if the project entry cannot be found.
+undef if the project entry cannot be found.
 
 =cut
 
@@ -106,8 +107,29 @@ sub retrieve_project {
     my $id   = shift;
 
     my $url = "http://freshmeat.net/projects-xml/$id/$id.xml";
-    my $res = $self->get($url) or die "Could not GET $url";
-    my $xml = $res->content();
+    my $response = $self->get($url);
+    if ($response->is_success) {
+      my $xml = $response->content();
+      return $self->project_from_xml($xml);
+    } else {
+      die "Could not GET $url";
+    }
+}
+
+=item B<project_from_xml> I<STRING>
+
+Receives Freshmeat project XML record and returns a C<WWW::Freshmeat::Project>
+object or undef if the project entry cannot be found.
+
+=cut
+
+sub project_from_xml {
+    my $self = shift;
+    my $xml  = shift;
+
+    if ($xml eq 'Error: project not found.') {
+      return undef;
+    }
 
     my $data = XML::Simple::XMLin($xml);
 
@@ -139,7 +161,7 @@ freshmeat.net entry through the following methods
 
 =back
 
-Additionnally, it provides the following "higher-level" methods:
+Additionally, it provides the following "higher-level" methods:
 
 =over 4
 

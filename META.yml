@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               WWW-Freshmeat
-version:            0.02
+version:            0.03
 abstract:           automates searches on Freshmeat.net
 author:
     - Cedric Bouvier <cbouvi@cpan.org>
@@ -9,6 +9,7 @@ distribution_type:  module
 configure_requires:
     ExtUtils::MakeMaker:  0
 requires:
+    LWP::Online:     1.06
     LWP::UserAgent:  0
     perl:            5.006
     Test::More:      0

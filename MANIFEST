@@ -10,3 +10,4 @@ t/pod-coverage.t
 t/pod.t
 t/project.t
 t/nonexistingproject.t
+xt/project1.t

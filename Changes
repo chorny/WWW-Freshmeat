@@ -1,5 +1,14 @@
 Revision history for WWW-Freshmeat
 
+0.10    2009-02-14
+        - 5.008 only (due to 'ISO-8859-1' encoding of XML file)
+        - projectname_short project method for retrieving project string id
+        - HTML::TreeBuilder::XPath is now required
+        - supports fetching branch list
+        - url_list project method for retrieving project URL list
+        - popularity project method for retrieving project popularity data
+        - redir_url in WWW::Freshmeat to fetch url which link will redirect to
+
 0.03    2009-02-03
         - retrieve_project for project that does not exist will return undef
         - retrieve_project will die if it would not be able to fetch project record

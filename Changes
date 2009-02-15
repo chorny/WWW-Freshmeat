@@ -1,5 +1,9 @@
 Revision history for WWW-Freshmeat
 
+0.11    2009-02-15
+        - url_list has argument to try to floow Freshmeat redirect links
+        - rewrote redir_url not to fetch page it was redirected to
+
 0.10    2009-02-14
         - 5.008 only (due to 'ISO-8859-1' encoding of XML file)
         - projectname_short project method for retrieving project string id

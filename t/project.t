@@ -29,8 +29,8 @@ is($project->projectname_short(),'hook_lexwrap');
 is_deeply({$project->branches()},{'77120'=>'Default'},'branches');
 #%hash=$project->url_list;
 is_deeply({$project->url_list()},{
-'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
-'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
+ 'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
+ 'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
 },'URLs');
 my %pop=$project->popularity();
 cmp_ok($pop{'record_hits'},'>=',442);

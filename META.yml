@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               WWW-Freshmeat
-version:            0.10
+version:            0.11
 abstract:           automates searches on Freshmeat.net
 author:
     - Alexandr Ciornii <alexchorny@gmail.com>

@@ -10,11 +10,11 @@ WWW::Freshmeat - automates searches on Freshmeat.net
 
 =head1 VERSION
 
-Version 0.10
+Version 0.11
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use XML::Simple qw();
 
@@ -118,6 +118,7 @@ sub branches {
 
 sub url_list {
     my $self = shift;
+    my $real=(@_>0?1:0);
     my $tree=$self->_html_tree();
     my $nodes=$tree->findnodes(q{/html/body/div/table/tr/td/table/tr/td/p/a[@href=~/\/redir/]}); #/
     my %list;
@@ -126,9 +127,13 @@ sub url_list {
         my $type=$1;
         my $text=$node->as_text();
         if ($text=~/\Q[..]\E/) {
-          $list{$1}=$node->attr('href');
+          if ($real) {
+            $list{$type}=$self->www_freshmeat()->redir_url('http://freshmeat.net'.$node->attr('href'));
+          } else {
+            $list{$type}=$node->attr('href');
+          }
         } else {
-          $list{$1}=$text;
+          $list{$type}=$text;
         }
       } else {
         die;
@@ -233,10 +238,23 @@ Receives URL and returns URL which it redirects to.
 sub redir_url {
     my $self = shift;
     my $url=shift;
-    my $res = $self->get($url) or return $url;
-    my $req = $res->request() or return $url;
-    my $uri = $req->uri() or return $url;
-    return $uri->as_string();
+    $self->requests_redirectable([]);
+    my $response = $self->get($url) or return $url;
+    if ($response->is_redirect) {
+      #http://www.perlmonks.org/?node_id=147608
+      my $referral_uri = $response->header('Location');
+      {
+          # Some servers erroneously return a relative URL for redirects,
+          # so make it absolute if it not already is.
+          local $URI::ABS_ALLOW_RELATIVE_SCHEME = 1;
+          my $base = $response->base;
+          $referral_uri = $HTTP::URI_CLASS->new($referral_uri, $base)
+                      ->abs($base);
+      }
+      return $referral_uri;
+    } else {
+      return $url;
+    }
 }
 
 =back
@@ -301,7 +319,8 @@ record_hits, url_hits, subscribers
 
 =item B<url_list>
 
-Returns list of URLs for project. You may need to use redir_url to get real link.
+Returns list of URLs for project. You may need to use redir_url to get real link
+or just pass 1 as argument.
 
 =back
 

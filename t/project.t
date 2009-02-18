@@ -3,9 +3,9 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 17;
+use Test::More tests => 18;
 
-use WWW::Freshmeat;
+use WWW::Freshmeat 0.12;
 
 my $fm = WWW::Freshmeat->new;
 isa_ok($fm,'WWW::Freshmeat');
@@ -29,10 +29,11 @@ is($project->projectname_short(),'hook_lexwrap');
 is_deeply({$project->branches()},{'77120'=>'Default'},'branches');
 #%hash=$project->url_list;
 is_deeply({$project->url_list()},{
- 'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
- 'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
+'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
+'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
 },'URLs');
 my %pop=$project->popularity();
 cmp_ok($pop{'record_hits'},'>=',442);
 cmp_ok($pop{'url_hits'},'>=',216);
 cmp_ok($pop{'subscribers'},'>=',0);
+is($project->real_author(),'Damian Conway');

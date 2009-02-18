@@ -10,11 +10,11 @@ WWW::Freshmeat - automates searches on Freshmeat.net
 
 =head1 VERSION
 
-Version 0.11
+Version 0.12
 
 =cut
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 use XML::Simple qw();
 
@@ -116,6 +116,7 @@ sub branches {
     return %list;
 }
 
+our $project_re=qr/[a-z0-9_\-\.]+/;
 sub url_list {
     my $self = shift;
     my $real=(@_>0?1:0);
@@ -123,7 +124,7 @@ sub url_list {
     my $nodes=$tree->findnodes(q{/html/body/div/table/tr/td/table/tr/td/p/a[@href=~/\/redir/]}); #/
     my %list;
     while (my $node=$nodes->shift) {
-      if ($node->attr('href') =~m#/redir/[a-z0-9_-]+/\d+/(url_\w+)/#) {
+      if ($node->attr('href') =~m#/redir/$project_re/\d+/(url_\w+)/#) {
         my $type=$1;
         my $text=$node->as_text();
         if ($text=~/\Q[..]\E/) {
@@ -136,7 +137,7 @@ sub url_list {
           $list{$type}=$text;
         }
       } else {
-        die;
+        die "bad link:".$node->attr('href');
       }
     }
     return %list;
@@ -155,7 +156,7 @@ sub popularity {
       foreach my $s (@list) {
         $s=~s/^(?:^&nbsp;|\s)+//s;
         $s=~s/\s+$//s;
-        print "F:$s\n";
+        #print "F:$s\n";
         if ($s=~/(\w[\w\s]+\w):\s+([\d,]+)/ and exists $popularity_conv{$1}) {
           my $type=$popularity_conv{$1};
           my $num=$2;
@@ -171,6 +172,21 @@ sub popularity {
     }
     return %list;
 }
+
+sub real_author {
+    my $self = shift;
+    my $tree=$self->_html_tree();
+    my $nodes=$tree->findnodes(q{/html/body/div[1]/table/tr/td[2]/table/tr[3]/td[1]/p[2]/b/..});
+    my %list;
+    if (my $node=$nodes->shift) {
+      my $text=$node->as_text;
+      $text=~s/^Author:\s+//s;
+      $text=~s/\s+\Q[contact developer]\E\s*$//s;
+      $text=~s/\s+<[^<>]+>\s*$//s;
+      return $text;
+    }
+}
+
 
 package WWW::Freshmeat;
 
@@ -321,6 +337,10 @@ record_hits, url_hits, subscribers
 
 Returns list of URLs for project. You may need to use redir_url to get real link
 or just pass 1 as argument.
+
+=item B<real_author>
+
+Returns name of author (not maintainer).
 
 =back
 

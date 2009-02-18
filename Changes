@@ -1,5 +1,10 @@
 Revision history for WWW-Freshmeat
 
+0.12    2009-02-18
+        - added $WWW::Freshmeat::Project::project_re - regexp for project name
+        - url_list will work with projects containing '.'
+        - added real_author to fetch name of author (not maintainer)
+
 0.11    2009-02-15
         - url_list has argument to try to floow Freshmeat redirect links
         - rewrote redir_url not to fetch page it was redirected to

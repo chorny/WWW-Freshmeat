@@ -18,6 +18,12 @@ my $builder = Module::Build->new(
         'Test::More' => 0.17, #isa_ok
         'LWP::Online' => 1.06,
     },
+    meta_merge => {
+        resources=> {
+            repository => 'http://github.com/chorny/WWW-Freshmeat',
+        },
+        keywords => ['freshmeat','API'],
+    },
     add_to_cleanup      => [ 'WWW-Freshmeat-*' ],
 );
 

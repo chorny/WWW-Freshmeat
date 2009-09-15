@@ -21,6 +21,7 @@ my $builder = Module::Build->new(
     meta_merge => {
         resources=> {
             repository => 'http://github.com/chorny/WWW-Freshmeat',
+            Ohloh => 'https://www.ohloh.net/p/WWW-Freshmeat',
         },
         keywords => ['freshmeat','API'],
     },

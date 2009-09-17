@@ -1,5 +1,8 @@
 Revision history for WWW-Freshmeat
 
+        - Updates for new API
+
+0.13    not released
         - method version will return empty string when there is no release
         - new project methods: release_date, maintainers, date_add, date_updated
         - WWW::Freshmeat::User added

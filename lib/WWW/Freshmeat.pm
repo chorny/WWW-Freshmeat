@@ -262,9 +262,14 @@ sub new {
   my $self=LWP::UserAgent->new();
   bless $self,$class;
   my %data=@_;
-  die "No token" unless $data{token};
   $self->{fm_token}=$data{token};
   return $self;
+}
+
+sub _token {
+  my $self = shift;
+  die "No token" unless $self->{fm_token};
+  return $self->{fm_token};
 }
 
 =head1 DESCRIPTION
@@ -288,7 +293,7 @@ sub retrieve_project {
     my $self = shift;
     my $id   = shift;
 
-    my $url = "http://freshmeat.net/projects/$id.xml?auth_code=".$self->{fm_token};
+    my $url = "http://freshmeat.net/projects/$id.xml?auth_code=".$self->_token;
 
     my $response = $self->get($url);
     if ($response->is_success) {

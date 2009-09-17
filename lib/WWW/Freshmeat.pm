@@ -71,7 +71,10 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
 
 sub name        { $_[0]->{name} } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
-sub trove_id    { $_[0]{descriminators}{trove_id} }
+sub trove_id    { 
+  die "deprecated";
+  $_[0]{descriminators}{trove_id}
+}
 
 sub version { 
   my $ver=$_[0]{latest_release}{latest_release_version};

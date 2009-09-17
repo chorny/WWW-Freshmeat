@@ -1,12 +1,17 @@
 Revision history for WWW-Freshmeat
 
+        - method version will return empty string when there is no release
+        - new project methods: release_date, maintainers, date_add, date_updated
+        - WWW::Freshmeat::User added
+        - example added
+
 0.12    2009-02-18
         - added $WWW::Freshmeat::Project::project_re - regexp for project name
         - url_list will work with projects containing '.'
         - added real_author to fetch name of author (not maintainer)
 
 0.11    2009-02-15
-        - url_list has argument to try to floow Freshmeat redirect links
+        - url_list has argument to try to follow Freshmeat redirect links
         - rewrote redir_url not to fetch page it was redirected to
 
 0.10    2009-02-14

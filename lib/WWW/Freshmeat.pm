@@ -10,11 +10,11 @@ WWW::Freshmeat - automates searches on Freshmeat.net
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =cut
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 use XML::Simple qw();
 
@@ -63,8 +63,71 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
 
 sub name        { $_[0]->projectname_full(@_) || $_[0]->projectname_short(@_) } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
-sub version     { $_[0]{latest_release}{latest_release_version} }
 sub trove_id    { $_[0]{descriminators}{trove_id} }
+
+sub version { 
+  my $ver=$_[0]{latest_release}{latest_release_version};
+  if (ref($ver) eq 'HASH') {
+    return '';
+  } else {
+    return $ver;
+  }
+}
+
+sub release_date {
+  my $dt=$_[0]{latest_release}{latest_release_date};
+  if (ref($dt) eq 'HASH') {
+    return '';
+  } else {
+    if ($dt eq '1970-01-01 00:00:00') {
+      return '';
+    } else {
+      return $dt;
+    }
+  }
+}
+
+sub date_add {
+  my $dt=$_[0]{date_added};
+  if (ref($dt) eq 'HASH') {
+    return '';
+  } else {
+    if ($dt eq '1970-01-01 00:00:00') {
+      die;
+    } else {
+      return $dt;
+    }
+  }
+}
+
+sub date_updated {
+  my $dt=$_[0]{date_updated};
+  if (ref($dt) eq 'HASH') {
+    return '';
+  } else {
+    if ($dt eq '1970-01-01 00:00:00') {
+      die;
+    } else {
+      return $dt;
+    }
+  }
+}
+
+sub maintainers {
+  my $authors=$_[0]{authors}{author};
+  if (ref($authors) eq 'HASH') {
+    if (keys %$authors>0) {
+      return ($authors->{author_name});
+      #$authors=[$authors];
+    } else {
+      return ();
+    }
+  } elsif (ref($authors) eq 'SCALAR') {
+    die;
+    #$authors=[$authors];
+  }
+  return map { $_->{author_name} } @$authors;
+}
 
 sub url {
     my $self = shift;
@@ -210,7 +273,6 @@ undef if the project entry cannot be found.
 =cut
 
 sub retrieve_project {
-
     my $self = shift;
     my $id   = shift;
 
@@ -244,6 +306,12 @@ sub project_from_xml {
     return WWW::Freshmeat::Project->new($data->{'project'}, $self);
 }
 
+sub retrieve_user {
+    my $self = shift;
+    my $id   = shift;
+    require WWW::Freshmeat::User;
+    return WWW::Freshmeat::User->new($self,$id);
+}
 
 =item B<redir_url> I<STRING>
 
@@ -341,6 +409,14 @@ or just pass 1 as argument.
 =item B<real_author>
 
 Returns name of author (not maintainer).
+
+=item B<release_date>
+
+Returns date of latest release.
+
+=item B<maintainers>
+
+Returns list of names of maintainers.
 
 =back
 

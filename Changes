@@ -1,6 +1,7 @@
 Revision history for WWW-Freshmeat
 
         - Updates for new API
+        - "url_list","branches" are deprecated
 
 0.13    not released
         - method version will return empty string when there is no release

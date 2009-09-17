@@ -176,6 +176,9 @@ sub _html_tree {
 }
 
 sub branches {
+    die "deprecated";
+
+=for cmt    
     my $self = shift;
     my $tree=$self->_html_tree();
     my $nodes=$tree->findnodes(q{//table/tr/th/b[text()='Branch']/../../following-sibling::tr/td[1]/a});
@@ -188,6 +191,7 @@ sub branches {
       }
     }
     return %list;
+=cut
 }
 
 our $project_re=qr/[a-z0-9_\-\.!]+/;

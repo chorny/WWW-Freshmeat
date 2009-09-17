@@ -59,6 +59,9 @@ table.fm_stat tr td:first-child + td + td + td + td + td
  </tr>
 EOT
 
+my $total_record_hits=0;
+my $total_url_hits=0;
+my $total_subscribers=0;
 foreach my $project (@proj) {
   if ($date) {
     next if $date ge $project->date_add();
@@ -70,6 +73,9 @@ foreach my $project (@proj) {
    exists $fp_num{$project->projectname_short()}?
      $fp_num{$project->projectname_short()}:
    '?';
+  $total_record_hits+=$pop{'record_hits'};
+  $total_url_hits+=$pop{'url_hits'};
+  $total_subscribers+=$pop{'subscribers'};
   print $out "
  <tr>
    <td><a href='http://freshmeat.net/project-stats/view/".$project->{project_id}."/'>".
@@ -82,6 +88,16 @@ foreach my $project (@proj) {
  </tr>
 \n";
 }
+  print $out "
+ <tr>
+   <td>Total</td>
+   <td>-</td>
+   <td>$total_record_hits</td>
+   <td>$total_url_hits</td>
+   <td>$total_subscribers</td>
+   <td>-</td>
+ </tr>
+\n";
 
 print $out <<'EOT';
 </table>

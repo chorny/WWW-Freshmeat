@@ -179,7 +179,7 @@ sub branches {
     return %list;
 }
 
-our $project_re=qr/[a-z0-9_\-\.]+/;
+our $project_re=qr/[a-z0-9_\-\.!]+/;
 sub url_list {
     my $self = shift;
     my $real=(@_>0?1:0);
@@ -300,6 +300,7 @@ sub project_from_xml {
     if ($xml eq 'Error: project not found.') {
       return undef;
     }
+    die "XML is empty" unless $xml;
 
     my $data = XML::Simple::XMLin($xml);
 
@@ -428,7 +429,7 @@ L<LWP::UserAgent>.
 
 =head1 AUTHOR
 
-Cedric Bouvier, C<< <cbouvi at cpan.org> >>
+Cedric Bouvier, C<< <cbouvi at cpan.org> >>. Alexandr Ciornii.
 
 =head1 BUGS
 

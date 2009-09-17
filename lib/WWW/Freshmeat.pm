@@ -62,7 +62,7 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
               return $value;
           }
       }
-    else {
+    } else {
       *$field = sub {
         die "deprecated";
       }
@@ -231,12 +231,12 @@ sub url_list1 {
     my $url_xml=$self->{'approved-urls'}{'content'};
     die unless $url_xml;
     foreach my $url (@$url_xml) {
-      if () {
+      if (1) {
       } else {
         die "bad link:";
       }
     }
-    return %list;
+    #return %list;
 }
 
 my %popularity_conv=('Record hits'=>'record_hits','URL hits'=>'url_hits','Subscribers'=>'subscribers');

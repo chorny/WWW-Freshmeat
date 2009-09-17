@@ -214,7 +214,7 @@ sub retrieve_project {
     my $self = shift;
     my $id   = shift;
 
-    my $url = "http://freshmeat.net/projects-xml/$id/$id.xml";
+    my $url = "http://freshmeat.net/projects/$id.xml";
     my $response = $self->get($url);
     if ($response->is_success) {
       my $xml = $response->content();

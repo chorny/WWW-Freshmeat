@@ -273,6 +273,8 @@ sub popularity {
 }
 
 sub real_author {
+    die "deprecated";
+
     my $self = shift;
     my $tree=$self->_html_tree();
     my $nodes=$tree->findnodes(q{/html/body/div[1]/table/tr/td[2]/table/tr[3]/td[1]/p[2]/b/..});
@@ -407,7 +409,11 @@ freshmeat.net entry through the following methods
 
 =item B<url_project_page>
 
+deprecated
+
 =item B<url_homepage>
+
+deprecated
 
 =item B<projectname_full>
 
@@ -418,6 +424,8 @@ freshmeat.net entry through the following methods
 =item B<license>
 
 =item B<trove_id>
+
+deprecated
 
 =item B<projectname_short>
 
@@ -449,6 +457,8 @@ freshmeat.net entry for the project.
 
 =item B<branches>
 
+deprecated
+
 List of branches for project. Returns hash in form of (branch id => branch name).
 
 =item B<popularity>
@@ -462,6 +472,8 @@ Returns list of URLs for project. You may need to use redir_url to get real link
 or just pass 1 as argument.
 
 =item B<real_author>
+
+deprecated
 
 Returns name of author (not maintainer).
 

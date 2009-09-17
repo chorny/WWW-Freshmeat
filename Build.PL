@@ -17,6 +17,7 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More' => 0.17, #isa_ok
         'LWP::Online' => 1.06,
+        'File::Slurp' => 0,
     },
     meta_merge => {
         resources=> {

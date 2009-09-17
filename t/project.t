@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 18;
+use Test::More tests => 20;
 
 use WWW::Freshmeat 0.12;
 
@@ -37,3 +37,5 @@ cmp_ok($pop{'record_hits'},'>=',442);
 cmp_ok($pop{'url_hits'},'>=',216);
 cmp_ok($pop{'subscribers'},'>=',0);
 is($project->real_author(),'Damian Conway');
+is_deeply([$project->maintainers],['Alexandr Ciornii']);
+cmp_ok($project->release_date,'ge','2008-12-29 18:48:04');

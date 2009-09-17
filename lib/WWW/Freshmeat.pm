@@ -38,12 +38,12 @@ use XML::Simple qw();
 package WWW::Freshmeat::Project;
 
 sub new {
-
     my $proto = shift;
     my $class = ref($proto) || $proto;
 
-    my $self = bless shift, $class;
+    my $self;
     $self->{www_freshmeat} = shift;
+    bless $self, $class;
     return $self;
 }
 
@@ -255,6 +255,16 @@ package WWW::Freshmeat;
 
 use base qw( LWP::UserAgent );
 
+sub new {
+  my $class=shift;
+  my $self=LWP::UserAgent->new();
+  bless $self,$class;
+  my %data=@_;
+  die "No token" unless $data{token};
+  $self->{fm_token}=$data{token};
+  return $self;
+}
+
 =head1 DESCRIPTION
 
 C<WWW::Freshmeat> derives from C<LWP::UserAgent>, so it accepts all the methods
@@ -276,7 +286,7 @@ sub retrieve_project {
     my $self = shift;
     my $id   = shift;
 
-    my $url = "http://freshmeat.net/projects/$id.xml";
+    my $url = "http://freshmeat.net/projects/$id.xml?auth_code=".$self->{fm_token};
 
     my $response = $self->get($url);
     if ($response->is_success) {

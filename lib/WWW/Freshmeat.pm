@@ -41,9 +41,8 @@ sub new {
     my $proto = shift;
     my $class = ref($proto) || $proto;
 
-    my $self;
+    my $self=bless shift, $class;
     $self->{www_freshmeat} = shift;
-    bless $self, $class;
     return $self;
 }
 
@@ -61,7 +60,7 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
     }
 }
 
-sub name        { $_[0]->projectname_full(@_) || $_[0]->projectname_short(@_) } 
+sub name        { $_[0]->{name} } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
 sub trove_id    { $_[0]{descriminators}{trove_id} }
 
@@ -314,8 +313,10 @@ sub project_from_xml {
     die "XML is empty" unless $xml;
 
     my $data = XML::Simple::XMLin($xml);
+    #die unless exists $data->{'project'};
+    die unless $data->{'name'};
 
-    return WWW::Freshmeat::Project->new($data->{'project'}, $self);
+    return WWW::Freshmeat::Project->new($data, $self); #->{'project'}
 }
 
 sub retrieve_user {

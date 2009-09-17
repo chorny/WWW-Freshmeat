@@ -87,13 +87,16 @@ sub release_date {
 }
 
 sub date_add {
-  my $dt=$_[0]{date_added};
-  if (ref($dt) eq 'HASH') {
+  my $dt=$_[0]{'created-at'}{'content'};
+  if (ref($dt)) { # eq 'HASH'
+    die ref($dt);
     return '';
   } else {
-    if ($dt eq '1970-01-01 00:00:00') {
+    if ($dt eq '1970-01-01 00:00:00' or $dt eq '1970-01-01T00:00:00Z') {
       die;
     } else {
+      $dt=~s/T/ /g;$dt=~s/Z$//g; #get rid ot T and Z in '2009-01-22T14:58:27Z'
+      die if $dt=~/[a-zA-Z]/;
       return $dt;
     }
   }

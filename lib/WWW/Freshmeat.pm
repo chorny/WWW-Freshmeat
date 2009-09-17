@@ -46,17 +46,26 @@ sub new {
     return $self;
 }
 
+my %new_api_map=('www_freshmeat'=>'www_freshmeat','desc_short'=>'oneliner',
+ 'desc_full'=>'description','projectname_full'=>'name','projectname_short'=>'permalink');
 foreach my $field ( qw( url_project_page url_homepage projectname_full desc_short desc_full license www_freshmeat projectname_short) ) {
     no strict 'refs';
-    *$field = sub {
-        my $self = shift;
-        my $value = $self->{$field};
-        if ( ref($value) && ref($value) eq 'HASH' && !(keys %$value) ) {
-            return undef;
-        }
-        else {
-            return $value;
-        }
+    my $xml_field=$new_api_map{$field};
+    if ($xml_field) {
+      *$field = sub {
+          my $self = shift;
+          my $value = $self->{$xml_field};
+          if ( ref($value) && ref($value) eq 'HASH' && !(keys %$value) ) {
+              return undef;
+          }
+          else {
+              return $value;
+          }
+      }
+    else {
+      *$field = sub {
+        die "deprecated";
+      }
     }
 }
 

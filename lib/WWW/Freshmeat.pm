@@ -183,6 +183,9 @@ sub branches {
 
 our $project_re=qr/[a-z0-9_\-\.!]+/;
 sub url_list {
+    die "deprecated";
+
+=for cmt
     my $self = shift;
     my $real=(@_>0?1:0);
     my $tree=$self->_html_tree();
@@ -203,6 +206,21 @@ sub url_list {
         }
       } else {
         die "bad link:".$node->attr('href');
+      }
+    }
+    return %list;
+=cut
+
+}
+
+sub url_list1 {
+    my $self = shift;
+    my $url_xml=$self->{'approved-urls'}{'content'};
+    die unless $url_xml;
+    foreach my $url (@$url_xml) {
+      if () {
+      } else {
+        die "bad link:";
       }
     }
     return %list;

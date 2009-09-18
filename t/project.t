@@ -7,7 +7,7 @@ use Test::More tests => 4;
 
 use WWW::Freshmeat 0.12;
 
-my $fm = WWW::Freshmeat->new();
+my $fm = WWW::Freshmeat->new(token=>'');
 isa_ok($fm,'WWW::Freshmeat');
 
 my $project = $fm->retrieve_project('hook_lexwrap');
@@ -30,14 +30,29 @@ foreach my $t (11,3,902,235,176,809,910) {
 =cut
 
 is($project->projectname_short(),'hook_lexwrap');
+my @list=$project->url_list1;
+is(scalar(@list),2);
+is_deeply($list[0],
+ {
+      label=>'Bug Tracker',
+      redirector=>'http://freshmeat.net/urls/854d57e030b1b55bb959ab066144c62d',
+      host=>'rt.cpan.org',
+},'correct link to Bug Tracker');
+is_deeply($list[1],
+ {
+      label=>'Website',
+      redirector=>'http://freshmeat.net/urls/958a46b0fd68b07418a150fc730dd5a1',
+      host=>'search.cpan.org',
+},'correct link to Website');
 
 =for cmt
-is_deeply({$project->branches()},{'77120'=>'Default'},'branches');
 %hash=$project->url_list;
 is_deeply({$project->url_list()},{
 'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
 'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
 },'URLs');
+
+is_deeply({$project->branches()},{'77120'=>'Default'},'branches');
 my %pop=$project->popularity();
 cmp_ok($pop{'record_hits'},'>=',442);
 cmp_ok($pop{'url_hits'},'>=',216);

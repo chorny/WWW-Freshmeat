@@ -231,15 +231,15 @@ sub url_list {
 
 sub url_list1 {
     my $self = shift;
-    my $url_xml=$self->{'approved-urls'}{'content'};
+    my $url_xml=$self->{'approved-urls'}{'approved-url'};
     die unless $url_xml;
     my @urls;
     foreach my $a_url (@$url_xml) {
       die unless $a_url->{type} eq 'Url';
-      my $a_url1=$a_url->{'content'};
+      #my $a_url1=$a_url->{'content'};
       my %str;
       foreach my $f (qw/label redirector host/) {
-        $str{$f}=$a_url1->{$f};
+        $str{$f}=$a_url->{$f};
       }
       push @urls,\%str;
       #if (1) {

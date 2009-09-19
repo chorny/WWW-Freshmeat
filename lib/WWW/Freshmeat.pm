@@ -237,8 +237,9 @@ sub url_list1 {
     my %dedupe;
     foreach my $a_url (@$url_xml) {
       die unless $a_url->{type} eq 'Url';
-      next if $dedupe{$a_url->{permalink}};
-      $dedupe{$a_url->{permalink}}=1;
+      my $concatenated=$a_url->{permalink}.$a_url->{label};
+      next if $dedupe{$concatenated};
+      $dedupe{$concatenated}=1;
       #my $a_url1=$a_url->{'content'};
       my %str;
       foreach my $f (qw/label redirector host/) {
@@ -262,7 +263,7 @@ lc 'Download'=>'url_download',
 lc 'GitHub source repo' => 'url_cvs',
 lc 'Repository' => 'url_cvs',
 'cpan' => 'url_mirror',
-)
+);
 #url_changelog
 #url_download
 #url_cvs
@@ -272,15 +273,21 @@ sub detect_link_types {
     my $urls = shift;
     my %type_set;
     foreach my $url (@$urls) {
-      my $type=$detect_url_types{$url->{label}} || '';
+      my $type=$detect_url_types{lc $url->{label}} || '';
       #$type_set{$type} ||= [];
       if (exists $type_set{$type}) {
+        if (ref $type_set{$type} eq 'ARRAY') {
+          push @{$type_set{$type}},$url;
+        } else {
+          $type_set{$type}=[$type_set{$type},$url];
+        }
       } else {
         $type_set{$type}=$url;
       }
       #if ($type) {
       #} else 
     }
+    return \%type_set;
 }
 
 my %popularity_conv=('Record hits'=>'record_hits','URL hits'=>'url_hits','Subscribers'=>'subscribers');

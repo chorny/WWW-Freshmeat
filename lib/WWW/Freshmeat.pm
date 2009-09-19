@@ -234,8 +234,11 @@ sub url_list1 {
     my $url_xml=$self->{'approved-urls'}{'approved-url'};
     die unless $url_xml;
     my @urls;
+    my %dedupe;
     foreach my $a_url (@$url_xml) {
       die unless $a_url->{type} eq 'Url';
+      next if $dedupe{$a_url->{permalink}};
+      $dedupe{$a_url->{permalink}}=1;
       #my $a_url1=$a_url->{'content'};
       my %str;
       foreach my $f (qw/label redirector host/) {
@@ -249,6 +252,35 @@ sub url_list1 {
     }
     return @urls;
     #return %list;
+}
+
+my %detect_url_types=('website'=>'url_homepage',
+'homepage'=>'url_homepage',
+'home'=>'url_homepage',
+lc 'Download'=>'url_download',
+'bug tracker'=>'url_bugtracker',
+lc 'GitHub source repo' => 'url_cvs',
+lc 'Repository' => 'url_cvs',
+'cpan' => 'url_mirror',
+)
+#url_changelog
+#url_download
+#url_cvs
+#url_mirror
+sub detect_link_types {
+    my $self = shift;
+    my $urls = shift;
+    my %type_set;
+    foreach my $url (@$urls) {
+      my $type=$detect_url_types{$url->{label}} || '';
+      #$type_set{$type} ||= [];
+      if (exists $type_set{$type}) {
+      } else {
+        $type_set{$type}=$url;
+      }
+      #if ($type) {
+      #} else 
+    }
 }
 
 my %popularity_conv=('Record hits'=>'record_hits','URL hits'=>'url_hits','Subscribers'=>'subscribers');

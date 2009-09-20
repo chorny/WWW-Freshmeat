@@ -1,5 +1,9 @@
 package WWW::Freshmeat::Project;
 
+use 5.008;
+use strict;
+use warnings;
+
 sub new {
     my $proto = shift;
     my $class = ref($proto) || $proto;

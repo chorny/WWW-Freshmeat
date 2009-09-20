@@ -11,7 +11,6 @@ t/00-load.t
 t/pod-coverage.t
 t/pod.t
 t/project.t
-t/nonexistingproject.t
 t/project-mojo.t
 t/mojomojo.xml
 t/hook_lexwrap.xml

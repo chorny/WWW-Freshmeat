@@ -1,7 +1,9 @@
 Build.PL
+Makefile.PL
 Changes
 lib/WWW/Freshmeat.pm
-Makefile.PL
+lib/WWW/Freshmeat/Project.pm
+lib/WWW/Freshmeat/User.pm
 MANIFEST
 META.yml			# Will be created by "make dist"
 README
@@ -12,4 +14,6 @@ t/project.t
 t/nonexistingproject.t
 t/project-mojo.t
 t/mojomojo.xml
+t/hook_lexwrap.xml
 xt/project1.t
+examples/popularity.pl

@@ -36,7 +36,7 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
       }
     } else {
       *$field = sub {
-        die "deprecated";
+        croak "'$field' method is deprecated";
       }
     }
 }

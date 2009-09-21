@@ -169,7 +169,7 @@ sub _html_tree {
 }
 
 sub branches {
-    die "deprecated";
+    croak "deprecated";
 
 =for cmt    
     my $self = shift;

@@ -84,7 +84,11 @@ sub retrieve_project {
       my $xml = $response->content();
       return $self->project_from_xml($xml);
     } else {
-      die "Could not GET $url (".$response->status_line.")";
+      if ($response->code eq '404') {
+        return undef;
+      } else {
+        die "Could not GET freshmeat project (".$response->status_line.")";
+      }
     }
 }
 

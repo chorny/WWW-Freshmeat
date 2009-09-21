@@ -4,6 +4,8 @@ use 5.008;
 use strict;
 use warnings;
 use WWW::Freshmeat::Project::URL;
+use Carp;
+
 
 our $VERSION = '0.01';
 
@@ -169,7 +171,7 @@ sub branches {
 
 our $project_re=qr/[a-z0-9_\-\.!]+/;
 sub url_list {
-    die "deprecated";
+    croak "deprecated";
 
 =for cmt
     my $self = shift;

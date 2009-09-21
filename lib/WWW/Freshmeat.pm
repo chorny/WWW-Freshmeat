@@ -18,6 +18,7 @@ our $VERSION = '0.14';
 
 use XML::Simple qw();
 use WWW::Freshmeat::Project;
+use Carp;
 
 
 =head1 SYNOPSIS
@@ -52,7 +53,7 @@ sub new {
 
 sub _token {
   my $self = shift;
-  die "No token" unless $self->{fm_token};
+  croak "No token" unless $self->{fm_token};
   return $self->{fm_token};
 }
 

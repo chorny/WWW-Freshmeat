@@ -43,8 +43,15 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
 
 sub name        { $_[0]->{name} } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
+
+sub languages {
+  my $self = shift;
+  my $lang = $self->{'programming-language-list'};
+  return (split /,\s*/,$lang);
+}
+
 sub trove_id    { 
-  die "deprecated";
+  croak "deprecated";
   $_[0]{descriminators}{trove_id}
 }
 

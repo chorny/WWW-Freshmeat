@@ -50,6 +50,12 @@ sub languages {
   return (split /,\s*/,$lang);
 }
 
+sub tags {
+  my $self = shift;
+  my $tags = $self->{'tag-list'};
+  return (split /,\s*/,$tags);
+}
+
 sub trove_id    { 
   croak "deprecated";
   $_[0]{descriminators}{trove_id}

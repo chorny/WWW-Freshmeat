@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 14;
+use Test::More tests => 15;
 use File::Slurp;
 
 use WWW::Freshmeat 0.14;
@@ -59,8 +59,14 @@ is($hash->{'url_homepage'}->url,'http://search.cpan.org/dist/Hook-LexWrap/');
 ok(exists $hash->{'url_bugtracker'});
 is($hash->{'url_bugtracker'}->url,'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap');
 
+{
 my @lang=$project->languages;
 is($lang[0],'Perl');
+}
+
+is_deeply([$project->tags],['Software Development', 'Libraries', 'Perl Modules']);
+
+
 
 =for cmt
 is_deeply({$project->branches()},{'77120'=>'Default'},'branches');

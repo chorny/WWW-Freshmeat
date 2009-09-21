@@ -1,5 +1,6 @@
 package WWW::Freshmeat::Project::URL;
 use Mouse;
+use Carp;
 has 'url' => (is => 'rw', isa => 'Str', 'builder'=>'find_url','lazy'=>1);
 has 'label' => (is => 'rw', isa => 'Str',required=>1);
 has 'redirector' => (is => 'rw', isa => 'Str');
@@ -10,6 +11,8 @@ no Mouse;
 
 sub find_url {
   my $self=shift || die;
+  croak "No 'redirector' field" unless $self->redirector;
+  return $self->www_freshmeat->redir_url($self->redirector);
 }
 
 1;

@@ -13,6 +13,7 @@ my $builder = Module::Build->new(
         'XML::Simple' => 0,
         'perl' => 5.008,
         'HTML::TreeBuilder::XPath' => 0.09,
+        'Mouse' => 0.24, #recent one
     },
     build_requires => {
         'Test::More' => 0.17, #isa_ok

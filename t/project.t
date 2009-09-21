@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 9;
+use Test::More tests => 10;
 use File::Slurp;
 
 use WWW::Freshmeat 0.13;
@@ -11,11 +11,12 @@ use WWW::Freshmeat 0.13;
 my $fm = WWW::Freshmeat->new();
 isa_ok($fm,'WWW::Freshmeat');
 
-my $xml=read_file('hook_lexwrap.xml');
+my $xml=read_file('t/hook_lexwrap.xml');
 my $project = $fm->project_from_xml($xml);
 #my $project = $fm->retrieve_project('hook_lexwrap');
 
 isa_ok($project,'WWW::Freshmeat::Project');
+isa_ok($project->www_freshmeat,'WWW::Freshmeat');
 is($project->name(),'Hook::LexWrap');
 #is($project->url(),'http://search.cpan.org/dist/Hook-LexWrap/');
 #is($project->license(),'Perl License');
@@ -40,12 +41,14 @@ is_deeply($list[0],
       label=>'Bug Tracker',
       redirector=>'http://freshmeat.net/urls/854d57e030b1b55bb959ab066144c62d',
       host=>'rt.cpan.org',
+      www_freshmeat=>$project->www_freshmeat,
 },'correct link to Bug Tracker');
 is_deeply($list[1],
  {
       label=>'Website',
       redirector=>'http://freshmeat.net/urls/958a46b0fd68b07418a150fc730dd5a1',
       host=>'search.cpan.org',
+      www_freshmeat=>$project->www_freshmeat,
 },'correct link to Website');
 
 my $hash=$project->detect_link_types(\@list);

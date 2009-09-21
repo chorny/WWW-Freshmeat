@@ -67,12 +67,10 @@ sub trove_id    {
 }
 
 sub version { 
-  my $ver=$_[0]{latest_release}{latest_release_version};
-  if (ref($ver) eq 'HASH') {
-    return '';
-  } else {
-    return $ver;
-  }
+  my $self=shift;
+  return '' unless exists $self->{'recent-releases'}{'recent-release'};
+  my @versions=@{$self->{'recent-releases'}{'recent-release'}};
+  return $versions[0]->{'version'};
 }
 
 sub release_date {

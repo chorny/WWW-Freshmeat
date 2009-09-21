@@ -109,7 +109,7 @@ sub project_from_xml {
     }
     die "XML is empty" unless $xml;
 
-    my $data = XML::Simple::XMLin($xml,ForceArray => ['approved-url']);
+    my $data = XML::Simple::XMLin($xml,ForceArray => ['approved-url','recent-release']);
     #die unless exists $data->{'project'};
     die unless $data->{'name'};
 

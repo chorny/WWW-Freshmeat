@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 15;
+use Test::More tests => 16;
 use File::Slurp;
 
 use WWW::Freshmeat 0.14;
@@ -18,6 +18,7 @@ my $project = $fm->project_from_xml($xml);
 isa_ok($project,'WWW::Freshmeat::Project');
 isa_ok($project->www_freshmeat,'WWW::Freshmeat');
 is($project->name(),'Hook::LexWrap');
+is($project->version(),'0.22');
 #is($project->url(),'http://search.cpan.org/dist/Hook-LexWrap/');
 #is($project->license(),'Perl License');
 

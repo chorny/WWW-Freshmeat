@@ -3,10 +3,10 @@
 use strict;
 use warnings;
 use LWP::Online ':skip_all';
-use Test::More tests => 10;
+use Test::More tests => 13;
 use File::Slurp;
 
-use WWW::Freshmeat 0.13;
+use WWW::Freshmeat 0.14;
 
 my $fm = WWW::Freshmeat->new();
 isa_ok($fm,'WWW::Freshmeat');
@@ -53,14 +53,13 @@ is_deeply($list[1],
 
 my $hash=$project->detect_link_types(\@list);
 ok(exists $hash->{'url_homepage'});
-is($hash->{'url_homepage'}{host},'search.cpan.org');
+is($hash->{'url_homepage'}->host,'search.cpan.org');
+is($hash->{'url_homepage'}->url,'http://search.cpan.org/dist/Hook-LexWrap/');
+
+ok(exists $hash->{'url_bugtracker'});
+is($hash->{'url_bugtracker'}->url,'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap');
 
 =for cmt
-is_deeply({$project->url_list()},{
-'url_homepage'=>'http://search.cpan.org/dist/Hook-LexWrap/',
-'url_bugtracker'=>'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Hook-LexWrap',
-},'URLs');
-
 is_deeply({$project->branches()},{'77120'=>'Default'},'branches');
 my %pop=$project->popularity();
 cmp_ok($pop{'record_hits'},'>=',442);

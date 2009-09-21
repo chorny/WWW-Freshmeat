@@ -20,7 +20,7 @@ sub new {
 
 my %new_api_map=('www_freshmeat'=>'www_freshmeat','desc_short'=>'oneliner',
  'desc_full'=>'description','projectname_full'=>'name','projectname_short'=>'permalink');
-foreach my $field ( qw( url_project_page url_homepage projectname_full desc_short desc_full license www_freshmeat projectname_short) ) {
+foreach my $field ( qw(url_homepage projectname_full desc_short desc_full license www_freshmeat projectname_short) ) {
     no strict 'refs';
     my $xml_field=$new_api_map{$field};
     if ($xml_field) {
@@ -43,6 +43,11 @@ foreach my $field ( qw( url_project_page url_homepage projectname_full desc_shor
 
 sub name        { $_[0]->{name} } 
 sub description { $_[0]->desc_full(@_) || $_[0]->desc_short(@_) } 
+
+sub url_project_page {
+  my $self = shift;
+  return 'http://freshmeat.net/projects/'.$self->{'permalink'};
+}
 
 sub languages {
   my $self = shift;

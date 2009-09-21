@@ -3,6 +3,7 @@ package WWW::Freshmeat::Project;
 use 5.008;
 use strict;
 use warnings;
+use WWW::Freshmeat::Project::URL;
 
 our $VERSION = '0.01';
 
@@ -11,7 +12,7 @@ sub new {
     my $class = ref($proto) || $proto;
 
     my $self=bless shift, $class;
-    $self->{www_freshmeat} = shift;
+    $self->{www_freshmeat} = shift || die;
     return $self;
 }
 
@@ -200,6 +201,7 @@ sub url_list {
 
 sub url_list1 {
     my $self = shift;
+    die unless $self->isa('WWW::Freshmeat::Project');
     my $url_xml=$self->{'approved-urls'}{'approved-url'};
     die unless $url_xml;
     my @urls;
@@ -210,11 +212,11 @@ sub url_list1 {
       next if $dedupe{$concatenated};
       $dedupe{$concatenated}=1;
       #my $a_url1=$a_url->{'content'};
-      my %str;
-      foreach my $f (qw/label redirector host/) {
-        $str{$f}=$a_url->{$f};
-      }
-      push @urls,\%str;
+      my $url=WWW::Freshmeat::Project::URL->new(
+       (map {$_=>$a_url->{$_}} qw/label redirector host/),
+       www_freshmeat=>$self->{www_freshmeat},
+      );
+      push @urls,$url;
       #if (1) {
       #} else {
       #  die "bad link:";

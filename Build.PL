@@ -12,7 +12,7 @@ my $builder = Module::Build->new(
         'LWP::UserAgent' => 0,
         'XML::Simple' => 0,
         'perl' => 5.008,
-        'HTML::TreeBuilder::XPath' => 0.09,
+        #'HTML::TreeBuilder::XPath' => 0.09,
         'Mouse' => 0.24, #recent one
     },
     build_requires => {

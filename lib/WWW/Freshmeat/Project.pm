@@ -152,7 +152,7 @@ sub init_html {
     croak "removed";
     my $self = shift;
     my $html = shift;
-    require HTML::TreeBuilder::XPath;
+    #require HTML::TreeBuilder::XPath;
     $self->{_html}=HTML::TreeBuilder::XPath->new_from_content($html);
 }
 

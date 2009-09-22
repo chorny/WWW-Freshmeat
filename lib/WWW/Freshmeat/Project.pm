@@ -74,6 +74,7 @@ sub version {
 }
 
 sub release_date {
+  croak "'release_date' is temporarily removed";
   my $dt=$_[0]{latest_release}{latest_release_date};
   if (ref($dt) eq 'HASH') {
     return '';
@@ -116,6 +117,7 @@ sub date_updated {
 }
 
 sub maintainers {
+  croak "removed";
   my $authors=$_[0]{authors}{author};
   if (ref($authors) eq 'HASH') {
     if (keys %$authors>0) {
@@ -132,6 +134,7 @@ sub maintainers {
 }
 
 sub url {
+    croak "removed";
     my $self = shift;
     return $self->{url} if $self->{url};
     my $freshmeat_url = $self->{url_project_page};
@@ -143,6 +146,7 @@ sub url {
 }
 
 sub init_html {
+    croak "removed";
     my $self = shift;
     my $html = shift;
     require HTML::TreeBuilder::XPath;
@@ -281,6 +285,7 @@ sub detect_link_types {
 
 my %popularity_conv=('Record hits'=>'record_hits','URL hits'=>'url_hits','Subscribers'=>'subscribers');
 sub popularity {
+    croak "removed";
     my $self = shift;
     my $tree=$self->_html_tree();
     my $nodes=$tree->findnodes(q{/html/body/div[1]/table/tr/td[2]/table/tr[3]/td[3]/table[2]/tr/td/small});
@@ -310,7 +315,7 @@ sub popularity {
 }
 
 sub real_author {
-    die "deprecated";
+    croak "removed";
 
     my $self = shift;
     my $tree=$self->_html_tree();

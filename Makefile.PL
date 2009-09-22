@@ -14,7 +14,9 @@ WriteMakefile(
         'LWP::UserAgent' => 0,
         'XML::Simple' => 0,
         'LWP::Online' => 1.06,
-        'HTML::TreeBuilder::XPath' => 0.09,
+        #'HTML::TreeBuilder::XPath' => 0.09,
+        'Mouse' => 0.24, #recent one
+        'File::Slurp' => 0,
     },
     ($ExtUtils::MakeMaker::VERSION ge '6.31'? 
      ('LICENSE'		=> 'perl', ) : ()),

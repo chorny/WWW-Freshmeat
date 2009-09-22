@@ -7,6 +7,7 @@ use WWW::Freshmeat ();
 our $VERSION = '0.01';
 
 sub init_html {
+    die "deprecated";
     my $self = shift;
     my $html = shift;
     require HTML::TreeBuilder::XPath;

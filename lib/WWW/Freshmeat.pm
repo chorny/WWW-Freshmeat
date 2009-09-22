@@ -117,6 +117,7 @@ sub project_from_xml {
 }
 
 sub retrieve_user {
+    croak "'User' is temporarily removed";
     my $self = shift;
     my $id   = shift;
     require WWW::Freshmeat::User;

@@ -1,8 +1,9 @@
 Revision history for WWW-Freshmeat
 
         - Updates for new API
-        - "url_list", "branches", "trove_id", "real_author" are deprecated
-        - 'languages','tags' methods
+        - 'retrieve_user' temporarily removed
+        - "url_list", "branches", "trove_id", "real_author" were removed
+        - 'languages','tags' methods added
 
 0.13    not released
         - method version will return empty string when there is no release

@@ -11,7 +11,7 @@ use WWW::Freshmeat 0.14;
 my $fm = WWW::Freshmeat->new();
 isa_ok($fm,'WWW::Freshmeat');
 
-my $xml=read_file('t/hook_lexwrap.xml');
+my $xml=read_file((-e 't'?'t/':'').'hook_lexwrap.xml');
 my $project = $fm->project_from_xml($xml);
 #my $project = $fm->retrieve_project('hook_lexwrap');
 

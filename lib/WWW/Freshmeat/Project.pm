@@ -335,8 +335,6 @@ sub real_author {
 }
 
 
-=back
-
 =head2 WWW::Freshmeat::Project methods
 
 The C<WWW::Freshmeat::Project> object provides some of the fields from the

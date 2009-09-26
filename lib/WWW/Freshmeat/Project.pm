@@ -346,7 +346,7 @@ freshmeat.net entry through the following methods
 
 =item B<url_project_page>
 
-deprecated
+URL of project page on Freshmeat 
 
 =item B<url_homepage>
 

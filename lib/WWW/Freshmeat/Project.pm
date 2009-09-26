@@ -417,15 +417,19 @@ Returns list of URLs for project. Each URL is a WWW::Freshmeat::Project::URL obj
 
 =item B<real_author>
 
-deprecated
+Removed.
 
 Returns name of author (not maintainer).
 
 =item B<release_date>
 
+Removed.
+
 Returns date of latest release.
 
 =item B<maintainers>
+
+Removed.
 
 Returns list of names of maintainers.
 

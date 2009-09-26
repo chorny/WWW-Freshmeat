@@ -157,6 +157,7 @@ sub init_html {
 }
 
 sub _html_tree {
+    croak "removed";
     my $self = shift;
     if (!$self->{_html}) {
       my $id=$self->projectname_short();
@@ -174,7 +175,7 @@ sub _html_tree {
 }
 
 sub branches {
-    croak "deprecated";
+    croak "removed";
 
 =for cmt    
     my $self = shift;
@@ -194,7 +195,7 @@ sub branches {
 
 our $project_re=qr/[a-z0-9_\-\.!]+/;
 sub url_list {
-    croak "deprecated";
+    croak "removed";
 
 =for cmt
     my $self = shift;

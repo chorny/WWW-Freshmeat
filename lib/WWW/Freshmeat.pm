@@ -202,7 +202,7 @@ L<http://search.cpan.org/dist/WWW-Freshmeat>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2006 Cedric Bouvier.
+Copyright 2006 Cedric Bouvier (version 0.01).
 Copyright 2009 Alexandr Ciornii.
 
 This program is free software; you can redistribute it and/or modify it

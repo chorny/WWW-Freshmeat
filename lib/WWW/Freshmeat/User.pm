@@ -3,11 +3,12 @@ package WWW::Freshmeat::User;
 use strict;
 use warnings;
 use WWW::Freshmeat ();
+use Carp;
 
 our $VERSION = '0.01';
 
 sub init_html {
-    die "deprecated";
+    croak "removed";
     my $self = shift;
     my $html = shift;
     require HTML::TreeBuilder::XPath;
@@ -35,6 +36,7 @@ sub _html_tree {
 }
 
 sub new {
+    croak "removed";
     my $proto = shift;
     my $class = ref($proto) || $proto;
 

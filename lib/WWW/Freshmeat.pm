@@ -25,13 +25,12 @@ use Carp;
 
     use WWW::Freshmeat;
 
-    my $fm = WWW::Freshmeat->new;
+    my $fm = WWW::Freshmeat->new(token=>'freshmeat_token');
 
     my $project = $fm->retrieve_project('project_id');
 
     foreach my $p ( @projects, $project ) {
         print $p->name(), "\n";
-        print $p->url(), "\n";
         print $p->version(), "\n";
         print $p->description(), "\n";
     }
@@ -161,8 +160,6 @@ L<LWP::UserAgent>.
 Cedric Bouvier, C<< <cbouvi at cpan.org> >>. Alexandr Ciornii.
 
 =head1 BUGS
-
-This is very alpha code. It does not even support searching!
 
 Please report any bugs or feature requests to
 C<bug-www-freshmeat at rt.cpan.org>, or through the web interface at

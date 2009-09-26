@@ -362,7 +362,7 @@ deprecated
 
 =item B<trove_id>
 
-deprecated
+Removed.
 
 =item B<projectname_short>
 
@@ -387,6 +387,8 @@ Returns the version of the latest release.
 
 =item B<url>
 
+Removed.
+
 C<url_homepage> returns a freshmeat.net URL that redirects to the actual
 project's home page. This url() method tries to follow the redirection and
 returns the actual homepage URL if it can be found, or the URL to the
@@ -394,19 +396,24 @@ freshmeat.net entry for the project.
 
 =item B<branches>
 
-deprecated
+Removed.
 
 List of branches for project. Returns hash in form of (branch id => branch name).
 
 =item B<popularity>
+
+Removed.
 
 Freshmeat popularity data for project. Returns hash with keys
 record_hits, url_hits, subscribers
 
 =item B<url_list>
 
-Returns list of URLs for project. You may need to use redir_url to get real link
-or just pass 1 as argument.
+Removed.
+
+=item B<url_list1>
+
+Returns list of URLs for project. Each URL is a WWW::Freshmeat::Project::URL object.
 
 =item B<real_author>
 

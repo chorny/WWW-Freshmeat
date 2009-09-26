@@ -6,7 +6,7 @@ use warnings;
 
 =head1 NAME
 
-WWW::Freshmeat - automates searches on Freshmeat.net
+WWW::Freshmeat - automates usage of Freshmeat.net
 
 =head1 VERSION
 
@@ -150,6 +150,8 @@ sub redir_url {
       return $url;
     }
 }
+
+=back
 
 =head1 SEE ALSO
 

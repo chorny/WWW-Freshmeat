@@ -36,7 +36,7 @@ foreach my $field ( qw(url_homepage projectname_full desc_short desc_full licens
       }
     } else {
       *$field = sub {
-        croak "'$field' method is deprecated";
+        croak "'$field' method was removed";
       }
     }
 }
@@ -61,9 +61,9 @@ sub tags {
   return (split /,\s*/,$tags);
 }
 
-sub trove_id    { 
-  croak "deprecated";
-  $_[0]{descriminators}{trove_id}
+sub trove_id { 
+  croak "removed";
+  #$_[0]{descriminators}{trove_id}
 }
 
 sub version { 

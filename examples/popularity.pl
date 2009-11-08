@@ -3,7 +3,9 @@
 use strict;
 use warnings;
 
-use WWW::Freshmeat 0.13;
+use WWW::Freshmeat 0.20;
+die "Will not work with current version of WWW::Freshmeat\n";
+=for cmt
   use Getopt::Long;
   my $user;
   my $date;
@@ -102,3 +104,4 @@ foreach my $project (@proj) {
 print $out <<'EOT';
 </table>
 EOT
+=cut

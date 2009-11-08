@@ -1,11 +1,13 @@
 Revision history for WWW-Freshmeat
 
+0.20    2009-11-08
         - Updates for new API
         - 'retrieve_user' temporarily removed
         - "url_list", "branches", "trove_id", "real_author", "maintainers", "url", "init_html",
           "popularity" were removed
         - 'release_date' temporarily removed
         - 'languages','tags' methods added
+        - example removed
 
 0.13    not released
         - method version will return empty string when there is no release

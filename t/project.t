@@ -6,7 +6,7 @@ use LWP::Online ':skip_all';
 use Test::More tests => 16;
 use File::Slurp;
 
-use WWW::Freshmeat 0.14;
+use WWW::Freshmeat 0.20;
 
 my $fm = WWW::Freshmeat->new();
 isa_ok($fm,'WWW::Freshmeat');

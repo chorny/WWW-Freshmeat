@@ -1,25 +1,39 @@
---- #YAML:1.0
-name:               WWW-Freshmeat
-version:            0.12
-abstract:           automates searches on Freshmeat.net
+---
+name: WWW-Freshmeat
+version: 0.20
 author:
-    - Alexandr Ciornii <alexchorny@gmail.com>
-license:            perl
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
+  - 'Alexandr Ciornii <alexchorny@gmail.com>'
+abstract: automates usage of Freshmeat.net
+license: perl
+resources:
+  Ohloh: https://www.ohloh.net/p/WWW-Freshmeat
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/chorny/WWW-Freshmeat
 requires:
-    HTML::TreeBuilder::XPath:  0.09
-    LWP::Online:          1.06
-    LWP::UserAgent:       0
-    perl:                 5.008
-    Test::More:           0.17
-    XML::Simple:          0
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.48
+  LWP::UserAgent: 0
+  Mouse: 0.24
+  XML::Simple: 0
+  perl: 5.008
+build_requires:
+  File::Slurp: 0
+  LWP::Online: 1.06
+  Test::More: 0.17
+provides:
+  WWW::Freshmeat:
+    file: lib/WWW/Freshmeat.pm
+    version: 0.20
+  WWW::Freshmeat::Project:
+    file: lib/WWW/Freshmeat/Project.pm
+    version: 0.01
+  WWW::Freshmeat::Project::URL:
+    file: lib/WWW/Freshmeat/Project/URL.pm
+  WWW::Freshmeat::User:
+    file: lib/WWW/Freshmeat/User.pm
+    version: 0.01
+generated_by: Module::Build version 0.33
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+keywords:
+  - freshmeat
+  - API

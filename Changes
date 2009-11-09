@@ -1,5 +1,7 @@
 Revision history for WWW-Freshmeat
 
+        - redir_url will return string, not an URI object
+
 0.20    2009-11-08
         - Updates for new API
         - 'retrieve_user' temporarily removed

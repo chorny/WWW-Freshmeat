@@ -7,7 +7,7 @@ use WWW::Freshmeat::Project::URL;
 use Carp;
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.21';
 
 sub new {
     my $proto = shift;

@@ -14,7 +14,7 @@ Version 0.20
 
 =cut
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 use XML::Simple qw();
 use WWW::Freshmeat::Project;

@@ -11,6 +11,7 @@ my $builder = Module::Build->new(
     requires => {
         'LWP::UserAgent' => 0,
         'XML::Simple' => 0,
+        'XML::Parser' => 0, #for XML::Simple, in case of dependency problems
         'perl' => 5.008,
         #'HTML::TreeBuilder::XPath' => 0.09,
         'Mouse' => 0.24, #recent one

@@ -260,6 +260,7 @@ lc 'Download'=>'url_download',
 lc 'GitHub source repo' => 'url_cvs',
 lc 'Repository' => 'url_cvs',
 'cpan' => 'url_mirror',
+lc 'Mirror site' => 'url_mirror',
 );
 #url_changelog
 #url_download

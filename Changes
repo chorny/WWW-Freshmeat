@@ -1,5 +1,8 @@
 Revision history for WWW-Freshmeat
 
+        - 'Mirror site' will map to 'url_mirror'
+
+0.21    2009-12-29
         - redir_url will return string, not an URI object
 
 0.20    2009-11-08

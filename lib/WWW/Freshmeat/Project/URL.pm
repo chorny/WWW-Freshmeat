@@ -2,7 +2,7 @@ package WWW::Freshmeat::Project::URL;
 use Mouse;
 use Carp;
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 has 'url' => (is => 'rw', isa => 'Str', 'builder'=>'_find_url','lazy'=>1);
 has 'label' => (is => 'rw', isa => 'Str',required=>1);

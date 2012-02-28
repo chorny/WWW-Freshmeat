@@ -15,3 +15,4 @@ t/project.t
 t/project-mojo.t
 t/mojomojo.xml
 t/hook_lexwrap.xml
+META.json

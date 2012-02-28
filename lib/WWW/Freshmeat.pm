@@ -10,11 +10,11 @@ WWW::Freshmeat - automates usage of Freshmeat.net
 
 =head1 VERSION
 
-Version 0.20
+Version 0.22
 
 =cut
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 use XML::Simple qw();
 use WWW::Freshmeat::Project;
@@ -202,7 +202,7 @@ L<http://search.cpan.org/dist/WWW-Freshmeat>
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2006 Cedric Bouvier (version 0.01).
-Copyright 2009 Alexandr Ciornii.
+Copyright 2009-2012 Alexandr Ciornii.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

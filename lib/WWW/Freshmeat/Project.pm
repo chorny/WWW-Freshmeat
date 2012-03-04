@@ -336,6 +336,10 @@ sub real_author {
 }
 
 
+=head1 NAME
+
+WWW::Freshmeat::Project - retrieve project information
+
 =head2 WWW::Freshmeat::Project methods
 
 The C<WWW::Freshmeat::Project> object provides some of the fields from the
